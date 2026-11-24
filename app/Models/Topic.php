@@ -22,4 +22,12 @@ class Topic extends Model
     return $this->hasMany(Reply::class);
     }
 
+    protected function casts(): array
+{
+    return [
+        'content' => 'array',
+    ];
+}
+
+
 }

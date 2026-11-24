@@ -13,7 +13,11 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $data = Topic::all();
+        return response()->json([
+        'message' => 'Donnée retourné avec succès',
+        'data' => $data,
+        ], 200);
     }
 
     /**

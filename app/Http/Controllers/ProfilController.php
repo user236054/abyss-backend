@@ -13,7 +13,11 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        //
+         $data = Profil::all();
+        return response()->json([
+        'message' => 'Donnée retourné avec succès',
+        'data' => $data,
+        ],200);
     }
 
     /**

@@ -18,7 +18,8 @@ class ProfilFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'avatar' => fake()->word(),
+            'bio' => fake()->text(100),
         ];
     }
 }

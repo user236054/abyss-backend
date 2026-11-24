@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Profil;
 class ProfilSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class ProfilSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Profil::Factory()->count(10)->create();
     }
 }
