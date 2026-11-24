@@ -9,13 +9,16 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable(['pseudo'])]
+//#[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasUlids;
 
     /**
      * Get the attributes that should be cast.
@@ -29,4 +32,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function profil() : HasOne
+    {
+    return $this->hasOne(Profil::class);
+    
+    }
+
+    public function topics() : HasMany
+    {
+
+    return $this->hasMany(Topic::class);
+    }
+
+    public function replies() : HasMany
+    {
+    return $this->hasMany(Reply::class);
+
+    }
+
 }
