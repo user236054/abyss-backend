@@ -11,6 +11,8 @@ class Profil extends Model
 {
     /** @use HasFactory<\Database\Factories\ProfilFactory> */
     use HasFactory, HasUlids;
+
+    protected $fillable = ['avatar', 'bio', 'user_id'];
     public function user() : BelongsTo
     {
     return $this->belongsTo(User::class);

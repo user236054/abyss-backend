@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
         $data = User::all();
         return response()->json([
         'message' => 'Donnée retourné avec succès',
-        'data' => $data,
+        'data' => UserResource::collection($data),
         ], 200);
     }
 
@@ -25,7 +26,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $validated = $request->validated();
+        User::create($validated);
+
+        return response()->json([
+        'message' => 'Utilisateur enregistré avec succès',
+        ], 201);
+
     }
 
     /**
@@ -33,7 +40,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return response()->json([
+        'message' => 'User retournée avec succès',
+        'topic' => new UserResource($user),
+        ]);
     }
 
     /**
@@ -49,6 +59,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([
+        'message' => 'User supprimer avec succès',
+        'topic' => $user,
+        ]);
     }
 }

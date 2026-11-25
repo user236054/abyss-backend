@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -9,3 +11,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('users', UserController::class);
+Route::apiResource('topics', TopicController::class);
+Route::apiResource('profils', ProfilController::class);

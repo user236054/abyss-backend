@@ -12,7 +12,7 @@ class StoreProfilRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,9 @@ class StoreProfilRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'required|exists:users,id',
+            'avatar' => 'nullable|image|mimes:png,jpg,jpeg,gif|max:2048',
+            'bio' => 'nullable|string',
         ];
     }
 }
